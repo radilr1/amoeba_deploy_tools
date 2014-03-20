@@ -12,10 +12,10 @@ kitchen, install this gem, and deploy a node in minutes.
 
 ## Short introduction
 
-First, you need ruby installed. Next, add `amoeba-deploy-tools` to your project Gemfile, or install
+First, you need ruby installed. Next, add `amoeba_deploy_tools` to your project Gemfile, or install
 via the `gem` command:
 
-    > gem install amoeba-deploy-tools
+    > gem install amoeba_deploy_tools
 
 If you are preparing a server to install an application, change to that project's directory.
 Otherwise, switch to a dir where you plan on running ADT from. And run:
