@@ -61,6 +61,11 @@ module AmoebaDeployTools
       return @@instance
     end
 
+    def add(severity, message = nil, progname = nil, &block)
+      puts("#{message} #{progname}")
+      super
+    end
+
     # Prevent folks from instantiating one
     private_class_method :new
   end
