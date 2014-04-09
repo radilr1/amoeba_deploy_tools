@@ -38,6 +38,7 @@ module AmoebaDeployTools
     desc 'push', 'Push any changes to the node'
     def push
       logger.info 'Starting push...'
+      force_deployer
       refresh
       knife_solo :cook, ssh: true, include_private_key: true
       pull
