@@ -18,7 +18,7 @@ module AmoebaDeployTools
       knife_solo :prepare, 'bootstrap-version' => options[:version], ssh: true, interactive: options[:interactive]
 
       knife_solo :cook, ssh: true, include_private_key: true, interactive: options[:interactive] do |j|
-        j.run_list = ['role[base]']
+        j.run_list = ['recipe[amoeba_basenode]']
       end
 
       force_deployer
