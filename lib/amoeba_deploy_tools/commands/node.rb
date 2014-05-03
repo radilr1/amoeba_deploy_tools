@@ -72,6 +72,11 @@ module AmoebaDeployTools
     def list
       inside_kitchen do
         puts Dir.glob('nodes/*.json').sort.map {|n| File.basename(n).sub(/\.json$/, '')}
+        Dir.entries('nodes').each do |dir|
+          next if dir[0] == '.' || dir.include?('.json')
+          puts("\e[#{33}m#{dir}\e[0m")
+          puts Dir.glob("nodes/#{dir}/*.json").sort.map {|n| "  #{dir}/"+File.basename(n).sub(/\.json$/, '')}
+        end
       end
     end
 
