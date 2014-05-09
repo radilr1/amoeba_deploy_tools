@@ -92,16 +92,17 @@ module AmoebaDeployTools
       inside_kitchen do
         # Handle authorized_keys
         logger.debug '# Refreshing authorized_keys'
-        Dir.glob('authorized_keys/*') do |user_dir|
-          if File.directory? user_dir
-            user_name = File.basename(user_dir)
-            logger.info "Processing SSH keys for user #{user_name}."
-            user_bag = data_bag(:authorized_keys)[user_name]
-            user_bag[:keys] = []
+        Dir.glob('authorized_keys/*') do |app_dir|
+          if File.directory? app_dir
+            app_name = File.basename(app_dir)
+            logger.info "Processing SSH keys for app #{app_name}."
+            user_bag = data_bag(:authorized_keys)[app_name]
+            user_bag[:environments] = {}
 
-            Dir.glob(File.join(user_dir, '*')) do |key_file|
-              logger.debug "Reading key file: #{key_file}"
-              user_bag[:keys] << File.read(key_file).strip
+            Dir.glob(File.join(app_dir, '*')) do |env_file|
+              env = File.basename(env_file)
+              logger.debug "Reading key file: #{env}"
+              user_bag[:environments][env] = File.read(env_file).strip
             end
 
             logger.info "Writing #{user_bag.options[:filename]}"
